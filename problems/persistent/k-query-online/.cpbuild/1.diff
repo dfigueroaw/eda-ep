@@ -1,0 +1,8 @@
+--- /home/dfigueroaw/utec/eda/problems/persistent/k-query-online/.cpbuild/1.expected	2026-09-28 02:03:38.156917784 -0500
++++ /home/dfigueroaw/utec/eda/problems/persistent/k-query-online/.cpbuild/1.actual.norm	2026-09-28 02:03:38.158917789 -0500
+@@ -0,0 +1,5 @@
++1
++1
++0
++0
++2

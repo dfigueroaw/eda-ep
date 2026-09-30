@@ -1,0 +1,7 @@
+--- /home/dfigueroaw/utec/eda/problems/persistent-trie/prefijos-en-rango/.cpbuild/1.expected	2026-09-30 01:48:55.771868731 -0500
++++ /home/dfigueroaw/utec/eda/problems/persistent-trie/prefijos-en-rango/.cpbuild/1.actual.norm	2026-09-30 01:48:55.775868740 -0500
+@@ -0,0 +1,4 @@
++4
++1
++2
++0

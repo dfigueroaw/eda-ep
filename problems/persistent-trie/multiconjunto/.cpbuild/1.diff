@@ -1,0 +1,8 @@
+--- /home/dfigueroaw/utec/eda/problems/persistent-trie/multiconjunto/.cpbuild/1.expected	2026-09-30 02:46:59.727611927 -0500
++++ /home/dfigueroaw/utec/eda/problems/persistent-trie/multiconjunto/.cpbuild/1.actual.norm	2026-09-30 02:46:59.730611935 -0500
+@@ -0,0 +1,5 @@
++5
++8
++1
++8
++5

@@ -1,0 +1,5 @@
+--- /home/dfigueroaw/utec/eda/problems/persistent/kth-element-on-a-segment/.cpbuild/1.expected	2026-09-28 16:17:44.197264432 -0500
++++ /home/dfigueroaw/utec/eda/problems/persistent/kth-element-on-a-segment/.cpbuild/1.actual.norm	2026-09-28 16:17:44.197463828 -0500
+@@ -1 +1 @@
+-15
++10

@@ -1,0 +1,7 @@
+--- /home/dfigueroaw/utec/eda/problems/persistent-trie/k-esimo-xor-en-rango/.cpbuild/1.expected	2026-09-30 04:02:21.112821137 -0500
++++ /home/dfigueroaw/utec/eda/problems/persistent-trie/k-esimo-xor-en-rango/.cpbuild/1.actual.norm	2026-09-30 04:02:21.115821143 -0500
+@@ -0,0 +1,4 @@
++4
++1
++4
++1

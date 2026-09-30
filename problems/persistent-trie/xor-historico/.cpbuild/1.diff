@@ -1,0 +1,8 @@
+--- /home/dfigueroaw/utec/eda/problems/persistent-trie/xor-historico/.cpbuild/1.expected	2026-09-30 03:22:17.735263926 -0500
++++ /home/dfigueroaw/utec/eda/problems/persistent-trie/xor-historico/.cpbuild/1.actual.norm	2026-09-30 03:22:17.738263937 -0500
+@@ -0,0 +1,5 @@
++15
++15
++6
++11
++5
