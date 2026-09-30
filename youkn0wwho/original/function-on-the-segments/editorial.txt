@@ -1,0 +1,5 @@
+Let's build a data structure that allows us to find sum of functions on some prefix. The answer to the query can be obviously obtained using two answers on prefixes.
+
+We will use some persistent data structure that handles prefix sum queries — persistent segment tree, for example. We will actually use two different structures: let the sum of functions in some point x0 be x0·k + m; one structure will allow us to find k, and another one will allow us to find m.
+
+Obviously, for prefix of length 0 both k and m are equal to 0. Then when we advance from prefix of length i to prefix of length i + 1, we do the following: in the structure that handles k we add ki in position xi, 1 + 1 and add ( - ki) in position xi, 2 + 1, so it is added only on segment [x1 + 1, x2]. The same approach can be used to find m: add yi, 1 in position 0, add mi - yi, 1 in position xi, 1 + 1 and add yi, 2 - mi in position xi, 2 + 1. And to get the value in point x0 on some prefix, we just make a prefix sum query to the corresponding structure.

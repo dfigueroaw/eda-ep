@@ -1,0 +1,37 @@
+Suppose all queries have the same right border r
+. Then the answer for the query can be some integer i
+ such that the last occurence of i
+ on the prefix [1,r]
+ of the array is inside the segment, but the second to last occurence is outside the segment (or even does not exist). More formally, let f(i)
+ be the maximum index j
+ such that j<i
+ and aj=ai
+ (or −1
+ if there is no such j
+); the answer to the query is some number ak
+ such that l≤k≤r
+ and f(k)<l
+ (and k
+ is the rightmost occurence of ak
+ in the segment [1,r]
+). For a fixed right border r
+, we can build a segment tree which for every index x
+ such that x
+ is the rightmost occurence of ax
+ on [1,r]
+ stores the value of f(x)
+; and if we query minimum on the segment [l,r]
+ in such tree, we can try to find the answer. Let the position of minimum be m
+. If f(m)<l
+, then am
+ can be the answer; otherwise there is no answer.
+
+But this is too slow since we can't afford to build a segment tree for every possible value of r
+. There are two methods how to deal with this problem: you may sort all queries by their right borders and maintain the segment tree while shifting the right border (when going from r
+ to r+1
+, we have to update the values in the positions f(r+1)
+ and r+1
+), or we may use a persistent segment tree and get an online solution.
+
+We tried to eliminate solutions using Mo's algorithm, but in fact it's possible to squeeze some implementations of it into TL. There are two optimizations that might help there. When dividing the elements into blocks, we may sort the first block in the ascending order of right borders, the second — in descending, the third — in ascending order again, and so on. And also it's possible to obtain a Mo-based solution with worst case complexity of O((n+q)n−−√)
+ if we maintain the set of possible answers using sqrt decomposition on it.

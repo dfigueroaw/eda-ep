@@ -1,0 +1,80 @@
+Goal: maximise  median(subarray) − minimum(subarray)
+. Treat the minimum as the "left pointer" mn
+ that we increase from 1
+ up to max ai
+. For every fixed mn
+ we try to push a second pointer med
+ (the candidate median) as high as possible while some subarray exists whose minimum is exactly mn
+ and whose median is at least med
+. The answer is the largest difference med − mn
+ reached during this sweep.
+
+Fix a value mn
+. Any subarray whose minimum equals mn
+ must contain at least one position u
+ with au = mn
+, and the whole subarray must lie inside the maximal span where that u
+ is the strict minimum. Those spans are computed once by the usual monotone stack: lu=
+ first index to the left that has value< a[u]+ 1
+, ru=
+first index to the right that has value< au− 1
+.
+
+For a potential median M
+ define an array signi
+ = +1
+ if ai ≥ M
+, −1
+ otherwise. Inside any interval its median is ≥ M
+ exactly when the total sum of sign over that interval is positive (at least half the elements are high). Therefore, for a particular position u
+ to serve as the minimum we need
+
+maxSuffix(lu, u−1)+signu+maxPrefix(u+1, ru)≥ 0
+.
+
+Here maxSuffix
+ and maxPrefix
+ are, respectively, the largest suffix sum ending at u−1
+ and the largest prefix sum starting at u+1
+, measured in the sign array.
+
+All max-prefix / max-suffix / total-sum queries can be answered in O(log n)
+ with a segment-tree that stores at each node (ans,bestPrefix,bestSuffix,totalSum
+). Merging two children follows the standard Kadane-style formulas.
+
+Algorithm loop. Initialise the segment tree with sign ≡ +1
+, so total sum everywhere is positive; set med = 1
+. For med←1
+ we must exclude from the tree every position whose value is < med
+, by updating that point to −1
+. Now iterate mn
+ from 1
+ upward:
+
+- for every index u
+ with au = mn
+ evaluate the inequality above.
+
+- while the inequality is satisfied for all such indices, increment med
+ by 1
+ and for every position whose value just became < med
+ perform one point-update to −1
+ in the segment tree.
+
+- when the test fails for some u
+, stop raising med.
+
+- record ans=max(ans,med − mn)
+.
+
+Because med only increases and never exceeds n
+, the total number of tree updates is O(n)
+ and every update / query costs O(log n)
+, so the whole run is O(n log n)
+. Memory is O(n)
+.
+
+Why correct. For each mn the inner while moves med upward greedily until the moment no subarray with minimum mn can keep the median≥ med
+; thus the last valid value of med
+ realises the true maximum for this mn
+. The outer sweep examines every possible minimum, hence the largest gap ever recorded is the global optimum.

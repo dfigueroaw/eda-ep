@@ -1,0 +1,54 @@
+Hint 1
+How would you find the smallest element with different frequencies in two static arrays using a segment tree? Consider hashing.
+
+Hint 2
+Try extending this idea to finding the smallest element with different frequencies in two different paths on a tree. Think persistent data structures.
+
+Hint 3
+Once you solve that, you can be extend it to finding the k smallest elements.
+
+Solution
+1957F2 - Frequency Mismatch (Hard Version)
+Let's start by first solving the problem for k=1
+, and extend the idea to k>1
+ later. To solve for k=1
+, we'll find the smallest value that occurs with different frequencies on the two paths.
+
+We'll solve an easier version by solving for two static arrays, instead of solving the problem of two paths. To find the smallest value that has a different frequency between the two arrays, we can have a segment tree on the frequency array for each static array. Then, we can store the hash of each segment tree node and perform a descent to find the first point at which the hashes in the two segment trees differ. The hash of a node is the polynomial hash of the subarray it corresponds to.
+
+Now, in order to use the same technique on the path, we want the frequency array of the path u→v
+. To achieve this, we can use persistent segment trees. We define seg(u→v)
+ to be the segment tree that corresponds to the frequency array of the values on the path u→v
+. With the idea of persistence, we can quickly compute seg(1→u)
+ for all u
+, when we root at 1
+.
+
+To compute seg(u→v)
+, we can use this:
+
+seg(u→v)=seg(1→u)+seg(1→v)−seg(1→lca(u,v))−seg(1→parent(lca(u,v)))
+ for every node in the segment tree that we want.
+
+Hence, we are able to get the segment tree for the two paths we need to compare in a query. In our solution with the static arrays, we used the polynomial hash to find the first point of difference between the two frequency arrays. So, we need a way to quickly compute the hash of the pseudo node we computed for seg(u→v)
+.
+
+If we have two frequency arrays f1
+, f2
+, hash(f1)+hash(f2)=hash(f1+f2)
+, where the hash of a node is the polynomial hash of the subarray that corresponds to that node.
+
+Hence, we can say:
+
+hash(seg(u→v))=hash(seg(1→u))+hash(seg(1→v))−hash(seg(1→lca(u,v)))−hash(seg(1→parent(lca(u,v)))
+
+Hence, we can perform the same descent that we talked about earlier on the derived segment tree.
+
+Now to solve this for k>1
+, you can perform a dfs on seg(u→v)
+, and keep entering nodes of the segment tree which have differing hashes, until we find k
+ values.
+
+The total time complexity comes out to O(nlogn)+O(q)×O(k)×O(logn)=O(qklogn+nlogn)
+
+You can also use an idea similar to the hashing technique used in F1 to hash the segment tree nodes.

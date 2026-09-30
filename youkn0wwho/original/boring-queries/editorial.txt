@@ -1,0 +1,30 @@
+In order to find the LCM of numbers on a segment, you can, for each prime number, find the maximum power with which it enters into any number on the segment and multiply the answer with this power. Let's calculate the LCM for primes less than MaxA−−−−−−√
+ and greater than MaxA−−−−−−√
+ separately using the segment tree.
+
+There are k=86
+ prime numbers less than MaxA−−−−−−√
+. Let's store a sorted list of prime numbers with their maximum power in each subsegment of the tree. The union of two segments can be done in O(k)
+. Then the construction of the entire tree can be done in O(n⋅k)
+. In order to answer the query, we split it into O(log(n))
+ subsegments of the segment tree and sequentially combine them in O(k)
+.
+
+For each number ai
+ in the array, there will be no more than one prime divisor pi
+ greater than MaxA−−−−−−√
+. For a query, you need to find the product of unique numbers pi
+ on a segment. To do this, for each such simple pi
+ number, find previ
+  – the closest position to the left in the array of the same prime number (or −1
+ if there is no such number on the left). For a subsegment, we will store a sorted list of (previ,pi)
+ pairs, and also pre-calculate the product pi
+ for each prefix. Now, for each subsegment of the tree that will be included in the query (l,r)
+, you need to select all such pairs for which previ<l
+ and take product of pi
+. Since the list is ordered, all these numbers will form a prefix. The prefix can be found using a binary search for log(n)
+.
+
+Total complexity O(n⋅k+q⋅log(n)⋅k+q⋅log2(n))
+, where k=MaxA√lnMaxA√
+ (the number of primes up to the root).

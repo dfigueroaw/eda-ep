@@ -1,0 +1,25 @@
+call(i, j) = match(sjinsi) which match(tins) is the number of occurrences of t in s.
+
+Concatenate all strings together in order (an put null character between them) and call it string S. We know that .
+
+Consider N = 5 × 105. Consider Consider for each i, Sxisxi + 1...syi = si (xi + 1 = yi + 2).
+
+Also, for i - th character of S which is not a null character, consider it belongs to swi.
+
+Calculate the suffix array of S in  and show it by f1, f2, ..., f|S| (we show each suffix by the index of its beginning).
+
+For each query, we want to know the number of occurrences of sk in Sxl...syr. For this propose, we can use this suffix array.
+
+Consider that we show suffix of S starting from index x by S(x).
+
+Also, for each i < |S|, calculate lcp(S(fi), S(fi + 1)) totally in  and show it by lci.
+
+For each query, consider fi = xk, also find minimum number a and maximum number b (using binary search and sparse table on sequence lc) such that a ≤ i ≤ b and min(lca, lca + 1, ..., lci - 1) ≥ |sk| and min(lci, lci + 1, ..., lcb - 1) ≥ |sk|.
+
+Finally answer of this query is the number of elements in wa, wa + 1, ..., wb that are in the interval [l, r].
+
+This problem is just like KQUERY. You can read my offline approach for KQUERY here. It uses segment tree, but you can also use Fenwick instead of segment tree.
+
+This wasn't my main approach. My main approach uses aho-corasick and a data structure I invented and named it C-Tree.
+
+Time complexity: O(nlgn)

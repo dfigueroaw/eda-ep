@@ -1,0 +1,1 @@
+Aqui algunos problemas de los que leí y entendí las editoriales antes del parcial. Las soluciones NO son mias, sin embargo, podrían servir de referencia en caso algún problema similar venga en el examen.

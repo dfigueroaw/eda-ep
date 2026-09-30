@@ -1,0 +1,13 @@
+Every time we process a plan, let's count only the first k warriors of some type.
+
+When will the warrior on position i be counted? Of course, he has to be present in the plan, so l ≤ i ≤ r. But also he has to be among k first warriors of his type in this plan.
+
+Let's denote a function prev(x, y):
+
+prev(x, 1) is the position of previous warrior of the same type before warrior x (that is, the greatest i such that i < x and ai = ax). If there's no any, then prev(x, 1) =  - 1;
+prev(x, y) = prev(prev(x, 1), y - 1)) if y > 1.
+It is easy to prove that the warrior x will be among k first warriors in some plan iff l > prev(x, k) and x ≤ r.
+
+So we can make a new array b: bi = prev(i, k). Then we build a segment tree on this array. The node of the segment tree will store all values of bi from the segment corresponding to this node (in sorted order). Then to get answer to the plan, we have to count the number of elements on segment [l, r] that are less than l.
+
+Complexity is , or  if you use fractional cascading technique.
