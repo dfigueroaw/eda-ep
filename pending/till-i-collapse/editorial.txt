@@ -1,0 +1,9 @@
+Your task is to find the minimum number of parts needed to partition this such that each part contains no more than k different numbers.
+
+For a fixed k, we can greedily find the answer. First, fix a maximal partition with at most k different numbers in it, then a maximal after that and so on. If answer for k is ans(k), we can find this number in . The only thing we want is to find maximum r for a fixed l so that [l, r] has at most k distinct numbers.
+
+This can be done with binary search + segment tree, but it's too slow. We can do this using a persistent segment tree in : for a fixed l, we define fl(i) to be 1 if l ≤ i and there's no such j that l ≤ j < i and ai = aj otherwise 0. So, if we have a segment tree on every fl, we can use this segment tree to find the first r for an arbitrary k (it's like finding k - th one in this array).
+
+So we find the answer in , so the total complexity is , and because , , so:
+
+Total time complexity: .
